@@ -164,23 +164,30 @@ class LinkedInAPI:
             
             # Click the "Add a note" button
             add_note_button.click()
-            time.sleep(1)
+            time.sleep(2)  # Increased wait time for modal to fully load
 
-            # Find and fill the note textarea using its full class name
-            note_textarea = WebDriverWait(self.driver, 5).until(
+            # Wait for the modal and find the textarea
+            modal = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((
                     By.CSS_SELECTOR,
-                    "textarea.ember-text-area.ember-view.connect-button-send-invite__custom-message"
+                    "div.send-invite"
                 ))
             )
-            note_textarea.clear()
+
+            # Find the textarea within the modal
+            note_textarea = modal.find_element(
+                By.CSS_SELECTOR,
+                "div.connect-button-send-invite__custom-message-box textarea"
+            )
             
             # Get message from config
-            message = self.config._get_connection_message()  # Call the method directly
+            message = self.config.connection_message
             if not message:
                 logging.error("No connection message found in config")
                 return False
             
+            # Clear and fill the textarea
+            note_textarea.clear()
             note_textarea.send_keys(message)
             logging.info(f"Successfully added note to connection request for profile: {profile_url}")
             return True
