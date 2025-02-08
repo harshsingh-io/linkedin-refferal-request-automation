@@ -1,0 +1,24 @@
+# LinkedIn Automation Configuration
+
+# Search Criteria
+search:
+  company_name: "Company Name" # Company name as it appears on LinkedIn
+  location: "Location" # e.g. "United States", "New York", etc.
+  role_category: "Role" # e.g. "Software Engineer", "Product Manager", etc.
+  max_requests: 10 # Maximum number of connection requests to send
+  mutual_connections: false # We're handling network filter directly in URL
+
+# Connection Message Template
+# Available variables: $name, $title
+connection_message: "Hi $name, I noticed you work as a $title. I'm interested in connecting to learn more about your experience. Looking forward to networking with you!"
+
+# LinkedIn Credentials (can be overridden by environment variables)
+credentials:
+  email: "your-email@example.com"
+  password: "your-password"
+
+# Delays (in seconds)
+delays:
+  between_requests: [3, 5] # Random delay between min and max
+  page_load: 3
+  action_delay: 1

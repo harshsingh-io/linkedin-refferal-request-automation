@@ -1,0 +1,13 @@
+linkedin_automation/
+├── config/
+│   └── config.py
+├── src/
+│   ├── __init__.py
+│   ├── auth.py
+│   ├── linkedin_api.py
+│   ├── message_handler.py
+│   ├── filters.py
+│   └── utils.py
+├── logs/
+├── main.py
+└── requirements.txt 
